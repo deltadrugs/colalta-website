@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  /* Earth-tone versions of the business-card hues. See README for the token list. */
+  --color-ink: #38281e;
+  --color-muted: #64503e;
+  --color-paper: #f3ebdf;
+  --color-paper-deep: #e4d9c8;
+  --color-card: #fbf6ee;
+  --color-line: #d8c9b4;
+  --color-green: #545838;
+  --color-pine: #3e4228;
+  --color-lime: #7a7c58;
+  --color-sage: #e8dfd0;
+  --color-orange: #d09a68;
+  --color-clay: #7e4e3a;
+  /* Self-hosted brand fonts. See public/fonts/ and app/layout.tsx. */
+  --font-sans: var(--font-futura), Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+  --font-script: var(--font-santa-fe), "Segoe Script", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-paper);
+  background-image:
+    radial-gradient(rgba(56, 40, 30, 0.045) 0.5px, transparent 0.55px),
+    radial-gradient(rgba(84, 88, 56, 0.035) 0.45px, transparent 0.5px);
+  background-size: 3px 3px, 5px 5px;
+  background-position: 0 0, 1px 2px;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  font-synthesis: none;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #e4d3bc;
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.font-script {
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--color-green);
+}
