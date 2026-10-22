@@ -87,11 +87,11 @@ The site is a static export. `.github/workflows/pages.yml` publishes `out/` on e
 
 1. Push this repository to GitHub.
 2. In the GitHub repository, open **Settings → Pages**. Set the source to **GitHub Actions**.
-3. The file `public/CNAME` is `glendalepharmacy.net`. After the first successful deploy, the custom domain in Pages should show that apex host. Turn on **Enforce HTTPS**.
-4. At the registrar, point the apex `glendalepharmacy.net` at GitHub Pages (the A records GitHub shows for apex domains) and point `www.glendalepharmacy.net` at the GitHub Pages host with a CNAME record. GitHub then redirects www to the apex.
+3. The file `public/CNAME` is `colalta.com`. After the first successful deploy, the custom domain in Pages should show that apex host. Turn on **Enforce HTTPS**.
+4. At the registrar, point the apex `colalta.com` at GitHub Pages (the A records GitHub shows for apex domains) and point `www.colalta.com` at the GitHub Pages host with a CNAME record. GitHub then redirects www to the apex.
 5. No environment variables are required. The site is served from the domain root (`basePath` is unset).
 
-The canonical URL in `lib/site.ts` (`url`) is `https://glendalepharmacy.net`. Page titles, Open Graph tags, the sitemap, and structured data use that origin. `www` is only the redirect host.
+The canonical URL in `lib/site.ts` (`url`) is `https://colalta.com`. Page titles, Open Graph tags, the sitemap, and structured data use that origin. `www` is only the redirect host.
 
 ## Before launch
 

@@ -4,7 +4,6 @@ import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { AddressBlock, EmailLink, HoursList, PhoneLink } from "@/components/ContactDetails";
 import { IntersectionMap } from "@/components/IntersectionMap";
-import { SinceSeal } from "@/components/SinceSeal";
 import { Spark } from "@/components/Spark";
 import { Stripe } from "@/components/Stripe";
 import { site } from "@/lib/site";
@@ -39,11 +38,8 @@ export default function HomePage() {
       <section>
         <Container className="grid items-center gap-12 py-14 lg:grid-cols-12 lg:py-20">
           <div className="lg:col-span-7">
-            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5">
-              <SinceSeal className="h-28 w-28 shrink-0 sm:h-32 sm:w-32" />
-              <p className="font-script text-3xl leading-none text-ink sm:text-4xl">since {site.since}</p>
-            </div>
-            <h1 className="mt-3 text-ink">
+            <p className="font-script text-3xl leading-none text-ink sm:text-4xl">since {site.since}</p>
+            <h1 className="mt-4 text-ink sm:mt-5">
               <span className="block font-script text-6xl leading-none sm:text-7xl">ColAlta</span>
               <span className="mt-2 block font-sans text-xl uppercase tracking-[0.32em] text-green sm:text-2xl">
                 Pharmacy
