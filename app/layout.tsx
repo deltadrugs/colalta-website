@@ -53,7 +53,10 @@ export const metadata: Metadata = {
     title: "ColAlta Pharmacy | Independent Pharmacy in Pasadena, CA",
     description,
   },
-  robots: { index: true, follow: true },
+  robots:
+    process.env.PREVIEW_NOINDEX === "1"
+      ? { index: false, follow: false }
+      : { index: true, follow: true },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "16x16 32x32 48x48", type: "image/x-icon" },

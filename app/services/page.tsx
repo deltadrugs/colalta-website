@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mark, StillFrame } from "@/components/atmosphere/Decor";
+import { FrameColumn, PhotoCard } from "@/components/atmosphere/Decor";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
@@ -24,8 +24,8 @@ export default function ServicesPage() {
         lede="What an independent pharmacy is for: filling prescriptions, moving them here, and answering questions about the medicine. A few items are marked until the pharmacy confirms them."
         current="Services"
         wash={stills.shelf}
-        frame={stills.groupFrame}
-        mark={stills.markGroup}
+        frame={stills.group}
+        card={stills.amber}
       />
       <Container className="py-12 sm:py-16">
         <div className="max-w-3xl space-y-12">
@@ -42,33 +42,28 @@ export default function ServicesPage() {
             </article>
           ))}
         </div>
-        <div className="relative mt-14">
-        <aside className="max-w-3xl rounded-2xl border border-line bg-card p-6 sm:p-8">
-          <h2 className="flex items-center gap-3 font-sans text-2xl text-ink">
-            <Mark image={stills.markSteps} />
-            Ready to move a prescription?
-          </h2>
-          <p className="mt-3 leading-relaxed text-muted">
-            Call {site.name} or read the transfer steps. There is no online account on this website.
-          </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <Button href={site.phoneHref} className="w-full sm:w-auto">
-              Call {site.phoneDisplay}
-            </Button>
-            <Button href="/refills" variant="secondary" className="w-full sm:w-auto">
-              Refills and transfers
-            </Button>
-          </div>
-          <p className="mt-6 text-sm">
-            <Link href="/contact" className="font-semibold text-green underline underline-offset-4">
-              Hours and location
-            </Link>
-          </p>
-        </aside>
-        <StillFrame
-          image={stills.amberFrame}
-          className="pointer-events-none absolute top-6 right-0 hidden w-36 lg:block"
-        />
+        <div className="mt-14 flex flex-col items-start gap-8 lg:flex-row">
+          <aside className="w-full min-w-0 max-w-3xl flex-1 rounded-2xl border border-line bg-card p-6 sm:p-8">
+            <h2 className="font-sans text-2xl text-ink">Ready to move a prescription?</h2>
+            <PhotoCard image={stills.group} className="mt-6" />
+            <p className="mt-3 leading-relaxed text-muted">
+              Call {site.name} or read the transfer steps. There is no online account on this website.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Button href={site.phoneHref} className="w-full sm:w-auto">
+                Call {site.phoneDisplay}
+              </Button>
+              <Button href="/refills" variant="secondary" className="w-full sm:w-auto">
+                Refills and transfers
+              </Button>
+            </div>
+            <p className="mt-6 text-sm">
+              <Link href="/contact" className="font-semibold text-green underline underline-offset-4">
+                Hours and location
+              </Link>
+            </p>
+          </aside>
+          <FrameColumn image={stills.amber} />
         </div>
       </Container>
     </>

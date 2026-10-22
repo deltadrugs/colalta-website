@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { treatments } from "@/lib/atmosphere";
+import { withBase } from "@/lib/base";
 
 export const metadata: Metadata = {
   title: "Photo studies",
@@ -19,9 +20,9 @@ export default function PreviewPage() {
       </h1>
       <div className="mt-5 max-w-2xl space-y-4 text-lg leading-relaxed text-muted">
         <p>
-          The same pages, three treatments. Washes stay behind the type. Framed still lifes sit at
-          an edge or between sections. Accents sit beside a heading. None of them is meant to be
-          the subject of the page.
+          The same pages, three treatments. Wash uses full-bleed bands and a column photograph,
+          with the type on a solid panel. Window dressing uses large framed prints, including the
+          waiting room and the counter. Accents are medium photo cards. The words stay readable.
         </p>
         <p>
           The waiting room and the counter are atmosphere only. They are not pictures of the
@@ -61,7 +62,7 @@ export default function PreviewPage() {
             >
               <iframe
                 title={`${study.label} on the homepage`}
-                src={`/?variant=${study.id}&embed=1`}
+                src={withBase(`/?variant=${study.id}&embed=1`)}
                 tabIndex={-1}
                 loading="lazy"
                 className="absolute top-0 left-0 origin-top-left border-0"

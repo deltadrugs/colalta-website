@@ -1,5 +1,5 @@
 /**
- * Decorative still lifes for the photo-study previews.
+ * Decorative photographs for the photo-study previews.
  *
  * These are atmosphere, not documentation. The waiting-room and counter
  * pictures are not photographs of the Pasadena shop and must not be captioned
@@ -11,26 +11,28 @@
  * someone is comparing.
  */
 
+import { withBase } from "@/lib/base";
+
 export const treatments = [
   {
     id: "wash",
-    label: "Faded wash",
+    label: "Photo wash",
     short: "Wash",
     summary:
-      "Low-opacity still lifes behind a few sections. Headings and paragraphs stay on a clear field.",
+      "Full-bleed photo bands and a column photograph. The bottles are recognizable, and the type sits on a solid panel.",
   },
   {
     id: "vignette",
     label: "Window dressing",
     short: "Frames",
     summary:
-      "Small framed bottles at the edge of a page, or resting in the gap between sections.",
+      "Framed photographs in their own column, wide enough to read as prints. Includes the waiting room and the counter.",
   },
   {
     id: "accent",
-    label: "Small accents",
+    label: "Photo accents",
     short: "Accents",
-    summary: "Tiny crops beside an eyebrow or a heading. Easy to miss until you look for them.",
+    summary: "Medium photo cards beside a heading or a section. Large enough to enjoy, small enough to leave the page alone.",
   },
 ] as const;
 
@@ -48,57 +50,36 @@ export type AtmosphereImage = {
   height: number;
   /** CSS object-position when the picture is cropped into a frame. */
   position?: string;
-  /** Responsive sources for full-bleed washes. Frames use `src` alone. */
+  /** Responsive sources. Frames and bands both use this. */
   srcSet?: string;
 };
 
-function wide(
+function picture(
   name: string,
   width: number,
   height: number,
   frameWidth: number,
   position?: string,
 ): AtmosphereImage {
+  const wideSrc = withBase(`/atmosphere/${name}-wide.webp`);
+  const frameSrc = withBase(`/atmosphere/${name}-frame.webp`);
   return {
-    src: `/atmosphere/${name}-wide.webp`,
+    src: wideSrc,
     width,
     height,
     position,
-    srcSet: `/atmosphere/${name}-frame.webp ${frameWidth}w, /atmosphere/${name}-wide.webp ${width}w`,
+    srcSet: `${frameSrc} ${frameWidth}w, ${wideSrc} ${width}w`,
   };
-}
-
-function frame(name: string, width: number, height: number, position?: string): AtmosphereImage {
-  return {
-    src: `/atmosphere/${name}-frame.webp`,
-    width,
-    height,
-    position,
-  };
-}
-
-function mark(name: string): AtmosphereImage {
-  return { src: `/atmosphere/mark-${name}.webp`, width: 192, height: 192 };
 }
 
 export const stills = {
-  labels: wide("labels", 1280, 960, 640, "50% 62%"),
-  group: wide("group", 1280, 960, 640, "50% 48%"),
-  counter: wide("counter", 1080, 1000, 640, "70% 45%"),
-  waiting: wide("waiting", 1280, 720, 640, "70% 55%"),
-  mortar: wide("mortar", 1280, 960, 640, "36% 58%"),
-  table: wide("table", 1280, 960, 640, "50% 58%"),
-  shelf: wide("shelf", 1280, 363, 720, "50% 50%"),
-  amber: wide("amber", 1100, 1116, 640, "55% 55%"),
-  labelsFrame: frame("labels", 640, 480, "50% 62%"),
-  groupFrame: frame("group", 640, 480, "48% 46%"),
-  mortarFrame: frame("mortar", 640, 480, "34% 58%"),
-  tableFrame: frame("table", 640, 480, "50% 58%"),
-  stepsFrame: frame("steps", 640, 480, "58% 42%"),
-  amberFrame: frame("amber", 640, 649, "60% 55%"),
-  markMortar: mark("mortar"),
-  markLabel: mark("label"),
-  markRose: mark("rose"),
-  markSteps: mark("steps"),
-  markGroup: mark("group"),
+  labels: picture("labels", 1800, 1350, 960, "50% 58%"),
+  group: picture("group", 1800, 1350, 960, "50% 46%"),
+  counter: picture("counter", 1800, 1087, 960, "50% 58%"),
+  waiting: picture("waiting", 1800, 1013, 960, "50% 55%"),
+  mortar: picture("mortar", 1800, 1350, 960, "38% 56%"),
+  table: picture("table", 1800, 1350, 960, "50% 55%"),
+  shelf: picture("shelf", 1800, 1350, 960, "50% 70%"),
+  amber: picture("amber", 1800, 1350, 960, "42% 48%"),
+  steps: picture("steps", 1800, 1350, 960, "55% 42%"),
 } as const;

@@ -95,7 +95,7 @@ The canonical URL in `lib/site.ts` (`url`) is `https://colalta.com`. Page titles
 
 ## Photo studies
 
-The still lifes are off until you ask for a treatment. Review them locally (GitHub Pages publishes `main` only):
+The photographs stay off until you ask for a treatment. GitHub Pages publishes `main` only, so compare them locally or on a separate preview host:
 
 ```bash
 npm install
@@ -106,11 +106,19 @@ Open [http://localhost:3000/preview/](http://localhost:3000/preview/).
 
 | Treatment | URL |
 | --- | --- |
-| Faded wash | `/?variant=wash` |
-| Window dressing | `/?variant=vignette` |
-| Small accents | `/?variant=accent` |
+| Photo wash | `/?variant=wash` — full-bleed bands and a column photograph; type stays on a solid panel |
+| Window dressing | `/?variant=vignette` — framed photographs about 300–450px wide, including the waiting room and counter |
+| Photo accents | `/?variant=accent` — medium photo cards, not thumbnails |
 
 The choice is remembered while you move around the site. `?variant=off` clears it. The waiting-room and counter pictures are atmosphere, not photographs of the shop. The homepage seal is unchanged.
+
+A noindex preview export does not change the production build. Leave `PREVIEW_BASE` unset when the preview is served from the domain root. Set it only for a subpath host. Delete `out/CNAME` before uploading that export anywhere other than the colalta.com Pages site.
+
+```bash
+PREVIEW_NOINDEX=1 npm run build
+# subpath host only:
+# PREVIEW_BASE=/colalta-preview PREVIEW_NOINDEX=1 npm run build
+```
 
 ## Before launch
 

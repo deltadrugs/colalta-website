@@ -1,75 +1,180 @@
 "use client";
 
+import type { ReactNode } from "react";
 import type { AtmosphereImage } from "@/lib/atmosphere";
 import { useTreatment } from "@/components/atmosphere/Treatment";
 
-export type WashMask = "right" | "left" | "corner" | "foot" | "even";
-export type WashTone = "paper" | "card" | "sage" | "ink";
-
-const masks: Record<WashMask, string> = {
-  right: "linear-gradient(90deg, transparent 0%, transparent 46%, #000 86%)",
-  left: "linear-gradient(270deg, transparent 0%, transparent 48%, #000 88%)",
-  corner: "radial-gradient(78% 72% at 100% 0%, #000 0%, transparent 70%)",
-  foot: "radial-gradient(72% 68% at 100% 100%, #000 0%, transparent 68%)",
-  even: "linear-gradient(#000, #000)",
-};
-
-const toneOpacity: Record<WashTone, number> = {
-  paper: 0.2,
-  card: 0.16,
-  sage: 0.16,
-  ink: 0.62,
-};
-
-export function Wash({
+function Photo({
   image,
-  tone = "paper",
-  mask = "right",
-  opacity,
+  className,
   priority = false,
+  sizes,
+}: {
+  image: AtmosphereImage;
+  className: string;
+  priority?: boolean;
+  sizes: string;
+}) {
+  return (
+    <img
+      src={image.src}
+      srcSet={image.srcSet}
+      sizes={sizes}
+      alt=""
+      width={image.width}
+      height={image.height}
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+      draggable={false}
+      className={className}
+      style={{ objectPosition: image.position ?? "center" }}
+    />
+  );
+}
+
+/** Full-bleed photograph. Copy never sits on top of it. */
+export function PhotoBand({
+  image,
+  priority = false,
+  className = "",
 }: {
   image?: AtmosphereImage;
-  tone?: WashTone;
-  mask?: WashMask;
-  opacity?: number;
   priority?: boolean;
+  className?: string;
 }) {
   const treatment = useTreatment();
   if (treatment !== "wash" || !image) return null;
 
-  const strength = opacity ?? toneOpacity[tone];
-  const maskImage = masks[mask];
+  return (
+    <div aria-hidden="true" className={`overflow-hidden border-y border-line ${className}`}>
+      <Photo
+        image={image}
+        priority={priority}
+        sizes="100vw"
+        className="h-64 w-full object-cover sm:h-80 lg:h-[26rem]"
+      />
+    </div>
+  );
+}
+
+/** Column photograph at full strength. The neighboring column keeps the type. */
+export function SidePhoto({
+  image,
+  priority = false,
+  edge = "paper",
+  className = "",
+}: {
+  image?: AtmosphereImage;
+  priority?: boolean;
+  edge?: "paper" | "ink";
+  className?: string;
+}) {
+  const treatment = useTreatment();
+  if (treatment !== "wash" || !image) return null;
+
+  const border = edge === "ink" ? "border-paper/55" : "border-ink";
 
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-      <img
-        src={image.src}
-        srcSet={image.srcSet}
-        sizes="100vw"
-        alt=""
-        width={image.width}
-        height={image.height}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        fetchPriority={priority ? "low" : "auto"}
-        draggable={false}
-        className="h-full w-full max-w-none object-cover"
-        style={{
-          opacity: strength,
-          objectPosition: image.position ?? "center",
-          filter: tone === "ink" ? "saturate(0.65) brightness(0.8)" : "saturate(0.7) sepia(0.14)",
-          WebkitMaskImage: maskImage,
-          maskImage,
-        }}
+    <div aria-hidden="true" className={`overflow-hidden border ${border} ${className}`}>
+      <Photo
+        image={image}
+        priority={priority}
+        sizes="(min-width: 1024px) 36rem, 100vw"
+        className="aspect-[4/3] w-full object-cover"
       />
-      {tone === "ink" ? (
-        <div className="absolute inset-0 bg-gradient-to-r from-ink from-[46%] via-ink/78 to-ink/32" />
+    </div>
+  );
+}
+
+/** Framed photograph sized to fill a column (about 300–450px on a desktop). */
+export function StillFrame({
+  image,
+  className = "",
+  priority = false,
+}: {
+  image?: AtmosphereImage;
+  className?: string;
+  priority?: boolean;
+}) {
+  const treatment = useTreatment();
+  if (treatment !== "vignette" || !image) return null;
+
+  return (
+    <div aria-hidden="true" className={`border border-ink bg-card p-2 sm:p-2.5 ${className}`}>
+      <Photo
+        image={image}
+        priority={priority}
+        sizes="(min-width: 1024px) 28rem, 100vw"
+        className="aspect-[4/3] w-full object-cover"
+      />
+    </div>
+  );
+}
+
+/** Medium photo card for the accent treatment. Not a thumbnail. */
+export function PhotoCard({
+  image,
+  className = "",
+  priority = false,
+}: {
+  image?: AtmosphereImage;
+  className?: string;
+  priority?: boolean;
+}) {
+  const treatment = useTreatment();
+  if (treatment !== "accent" || !image) return null;
+
+  return (
+    <div
+      aria-hidden="true"
+      className={`w-full max-w-sm border border-ink bg-card p-2 sm:w-80 ${className}`}
+    >
+      <Photo
+        image={image}
+        priority={priority}
+        sizes="(min-width: 640px) 20rem, 100vw"
+        className="aspect-[4/3] w-full object-cover"
+      />
+    </div>
+  );
+}
+
+/** Puts a frame or a card in a column only while that treatment is active. */
+export function StudyColumns({
+  children,
+  frame,
+  card,
+  className = "",
+  priority = false,
+}: {
+  children: ReactNode;
+  frame?: AtmosphereImage;
+  card?: AtmosphereImage;
+  className?: string;
+  priority?: boolean;
+}) {
+  const treatment = useTreatment();
+  const showFrame = treatment === "vignette" && Boolean(frame);
+  const showCard = treatment === "accent" && Boolean(card);
+  const split = showFrame || showCard;
+
+  return (
+    <div className={split ? `grid items-start gap-8 lg:grid-cols-12 lg:gap-10 ${className}` : className}>
+      <div className={split ? "min-w-0 lg:col-span-7" : "min-w-0"}>{children}</div>
+      {showFrame ? (
+        <StillFrame image={frame} priority={priority} className="w-full lg:col-span-5" />
+      ) : null}
+      {showCard ? (
+        <div className="lg:col-span-5 lg:flex lg:justify-end">
+          <PhotoCard image={card} priority={priority} />
+        </div>
       ) : null}
     </div>
   );
 }
 
-export function StillFrame({
+/** A desktop-width frame in normal flow. Renders nothing for the other treatments. */
+export function FrameColumn({
   image,
   className = "",
 }: {
@@ -79,66 +184,5 @@ export function StillFrame({
   const treatment = useTreatment();
   if (treatment !== "vignette" || !image) return null;
 
-  return (
-    <div aria-hidden="true" className={`border border-ink/80 bg-card p-[5px] ${className}`}>
-      <img
-        src={image.src}
-        alt=""
-        width={image.width}
-        height={image.height}
-        loading="lazy"
-        decoding="async"
-        draggable={false}
-        className="aspect-[5/4] w-full object-cover"
-        style={{ objectPosition: image.position ?? "center" }}
-      />
-    </div>
-  );
-}
-
-export function BreakFrame({
-  image,
-  side = "right",
-}: {
-  image?: AtmosphereImage;
-  side?: "left" | "right";
-}) {
-  const treatment = useTreatment();
-  if (treatment !== "vignette" || !image) return null;
-
-  const align = side === "right" ? "justify-end pr-5 sm:pr-14" : "justify-start pl-5 sm:pl-14";
-
-  return (
-    <div aria-hidden="true" className={`flex ${align}`}>
-      <StillFrame image={image} className="my-2 w-[92px] sm:my-3 sm:w-[132px]" />
-    </div>
-  );
-}
-
-export function Mark({
-  image,
-  className = "",
-  tone = "paper",
-}: {
-  image?: AtmosphereImage;
-  className?: string;
-  tone?: "paper" | "ink";
-}) {
-  const treatment = useTreatment();
-  if (treatment !== "accent" || !image) return null;
-
-  const border = tone === "ink" ? "border-paper/45" : "border-line";
-
-  return (
-    <img
-      src={image.src}
-      alt=""
-      width={image.width}
-      height={image.height}
-      loading="lazy"
-      decoding="async"
-      draggable={false}
-      className={`inline-block h-10 w-10 shrink-0 border bg-card object-cover p-px align-middle ${border} ${className}`}
-    />
-  );
+  return <StillFrame image={image} className={`w-full lg:w-[28rem] lg:max-w-[28rem] lg:shrink-0 ${className}`} />;
 }

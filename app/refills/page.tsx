@@ -1,4 +1,4 @@
-import { Mark } from "@/components/atmosphere/Decor";
+import { PhotoCard } from "@/components/atmosphere/Decor";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
@@ -42,8 +42,8 @@ export default function RefillsPage() {
         lede="Call the pharmacy. We will refill a prescription that is already here, or ask another pharmacy to send one over. This website does not have a patient portal."
         current="Refills"
         wash={stills.amber}
-        frame={stills.stepsFrame}
-        mark={stills.markLabel}
+        frame={stills.steps}
+        card={stills.labels}
       />
       <Container className="py-12 sm:py-16">
         <div className="grid gap-12 lg:grid-cols-2">
@@ -96,10 +96,10 @@ export default function RefillsPage() {
         </section>
 
         <section className="mt-10 rounded-2xl bg-sage p-6 sm:p-8" aria-labelledby="call-heading">
-          <h2 id="call-heading" className="flex items-center gap-3 font-sans text-3xl text-ink">
-            <Mark image={stills.markRose} />
+          <h2 id="call-heading" className="font-sans text-3xl text-ink">
             Call {site.phoneDisplay}
           </h2>
+          <PhotoCard image={stills.table} className="mt-6" />
           <p className="mt-3 max-w-2xl leading-relaxed text-muted">
             {site.hoursConfirmed ? site.hours.summary : site.hours.note} If this is a medical
             emergency, call 911. The pharmacy cannot provide emergency care.

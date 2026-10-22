@@ -23,8 +23,8 @@ export default function ContactPage() {
         lede="ColAlta Pharmacy is at 2498 East Colorado Blvd, Pasadena, CA 91107, where Colorado Boulevard meets Altadena Drive. Call, send a fax, email a general question, or open the address in Google Maps."
         current="Contact"
         wash={stills.table}
-        frame={stills.tableFrame}
-        mark={stills.markMortar}
+        frame={stills.table}
+        card={stills.mortar}
       />
       <Container className="grid gap-12 py-12 lg:grid-cols-2 lg:py-16">
         <div className="space-y-8">

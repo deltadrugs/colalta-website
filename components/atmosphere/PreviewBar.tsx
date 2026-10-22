@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { treatments } from "@/lib/atmosphere";
 import { useStudy } from "@/components/atmosphere/Treatment";
+import { withBase } from "@/lib/base";
 
 function onStudyIndex(pathname: string) {
   return pathname === "/preview" || pathname === "/preview/";
@@ -27,14 +28,16 @@ export function PreviewBar() {
       className="study-bar fixed bottom-3 left-1/2 z-30 flex w-[min(100%-1.25rem,44rem)] -translate-x-1/2 flex-wrap items-center justify-center gap-1.5 rounded-full border border-ink/80 bg-card/95 px-2 py-1.5 shadow-[0_10px_30px_rgba(56,40,30,0.14)] backdrop-blur-md sm:bottom-4 sm:gap-2 sm:px-3"
     >
       <a
-        href="/preview/"
+        href={withBase("/preview/")}
         className="px-2 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-green"
       >
         Studies
       </a>
       {treatments.map((item) => {
         const active = treatment === item.id;
-        const href = onStudyIndex(pathname) ? `/?variant=${item.id}` : `?variant=${item.id}`;
+        const href = onStudyIndex(pathname)
+          ? withBase(`/?variant=${item.id}`)
+          : `?variant=${item.id}`;
         return (
           <a
             key={item.id}

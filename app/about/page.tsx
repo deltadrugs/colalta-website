@@ -1,4 +1,4 @@
-import { Mark, StillFrame, Wash } from "@/components/atmosphere/Decor";
+import { PhotoCard, SidePhoto, StillFrame } from "@/components/atmosphere/Decor";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
@@ -25,18 +25,18 @@ export default function AboutPage() {
         lede="Headley’s Pharmacy, then Glendale Pharmacy, now ColAlta. The roots are in Glendale. The counter is now at Colorado and Altadena."
         current="About"
         wash={stills.mortar}
-        frame={stills.labelsFrame}
-        mark={stills.markMortar}
+        frame={stills.labels}
       />
-      <section className="relative overflow-hidden">
-      <Wash image={stills.amber} tone="paper" mask="right" opacity={0.16} />
-      <Container className="relative grid gap-12 py-12 lg:grid-cols-12 lg:py-16">
+      <Container className="grid gap-12 py-12 lg:grid-cols-12 lg:py-16">
         <div className="max-w-none space-y-6 text-lg leading-relaxed text-muted lg:col-span-7">
-          <div className="flex items-start gap-3">
-            <Spark className="mt-2 h-4 w-4 shrink-0 text-orange" />
-            <p className="font-script text-3xl leading-tight text-ink">
-              since {site.since} · Headley’s, then {site.formerName}
-            </p>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+            <div className="flex min-w-0 items-start gap-3">
+              <Spark className="mt-2 h-4 w-4 shrink-0 text-orange" />
+              <p className="font-script text-3xl leading-tight text-ink">
+                since {site.since} · Headley’s, then {site.formerName}
+              </p>
+            </div>
+            <PhotoCard image={stills.mortar} className="shrink-0" />
           </div>
           <p className="text-ink">
             If you knew us in Glendale, the name on the door has changed, and the people have not.
@@ -70,10 +70,10 @@ export default function AboutPage() {
             Colorado Boulevard through Pasadena is Historic Route 66. Altadena Drive runs north from
             that boulevard toward the community the street is named for.
           </p>
-          <h2 className="flex items-center gap-3 pt-4 font-sans text-3xl text-ink">
-            <Mark image={stills.markRose} />
-            A community counter
-          </h2>
+          <div className="flex flex-col gap-4 pt-4 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="font-sans text-3xl text-ink">A community counter</h2>
+            <PhotoCard image={stills.table} className="shrink-0" />
+          </div>
           <p>
             An independent pharmacy is a place you can walk into. Bring the bottle you have a
             question about. Call if you would rather talk before you come. If we do not know an
@@ -94,11 +94,13 @@ export default function AboutPage() {
             </Button>
           </div>
         </div>
-        <div className="grid gap-4 lg:col-span-5">
+        <div className="grid gap-6 lg:col-span-5">
+          <SidePhoto image={stills.amber} />
+          <StillFrame image={stills.waiting} className="w-full" />
+          <StillFrame image={stills.counter} className="w-full" />
           <div className="flex justify-center lg:justify-start">
             <SinceSeal className="h-36 w-36" />
           </div>
-          <StillFrame image={stills.mortarFrame} className="w-[10.5rem] sm:w-44" />
           <PhotoFrame
             kicker="Photograph to add"
             caption="Storefront on Colorado Boulevard — replace this panel with a photo of the Pasadena corner."
@@ -109,7 +111,6 @@ export default function AboutPage() {
           />
         </div>
       </Container>
-      </section>
     </>
   );
 }
