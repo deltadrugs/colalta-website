@@ -1,0 +1,25 @@
+{
+  "name": "ColAlta Pharmacy",
+  "short_name": "ColAlta",
+  "description": "Independent pharmacy in Pasadena, California.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F3EBDF",
+  "theme_color": "#545838",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

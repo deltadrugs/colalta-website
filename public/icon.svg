@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="ColAlta Pharmacy">
+  <title>ColAlta Pharmacy</title>
+  <rect width="32" height="32" fill="#F3EBDF"/>
+  <path fill="#4E6414" d="M4.7 16.5C4.6 15.2 7.4 14.2 16 14.2C24.6 14.2 27.4 15.2 27.3 16.5C27.8 20.2 26.2 24 23.2 26.1C21.4 27.3 19.2 28 17.6 28.2L19.7 30.2C19.7 30.7 19.2 31.05 18.6 31.05H13.4C12.8 31.05 12.3 30.7 12.3 30.2L14.4 28.2C12.8 28 10.6 27.3 8.8 26.1C5.8 24 4.2 20.2 4.7 16.5Z"/>
+  <path fill="#6E871F" d="M5.7 16.45C5.7 15.4 8.1 14.55 16 14.55C23.9 14.55 26.3 15.4 26.3 16.45C26.7 19.9 25.3 23.4 22.5 25.3C20.8 26.4 18.8 27.05 17.2 27.25L19.15 29.15C19.15 29.55 18.8 29.85 18.3 29.85H13.7C13.2 29.85 12.85 29.55 12.85 29.15L14.8 27.25C13.2 27.05 11.2 26.4 9.5 25.3C6.7 23.4 5.3 19.9 5.7 16.45Z"/>
+  <ellipse cx="16" cy="15.9" rx="11.35" ry="3.65" fill="#4E6414"/>
+  <ellipse cx="16" cy="15.55" rx="10.9" ry="3.35" fill="#89A22C"/>
+  <ellipse cx="16" cy="15.95" rx="10.9" ry="3.15" fill="#6E871F"/>
+  <ellipse cx="16" cy="16.45" rx="7.05" ry="2.05" fill="#3E5010"/>
+  <ellipse cx="16" cy="16.7" rx="6.2" ry="1.55" fill="#FBF6EE"/>
+  <g fill="#4A260C" stroke="#4A260C" stroke-linecap="round">
+    <circle cx="7.7" cy="7.05" r="3.95"/>
+    <path d="M10 8.6 L22.9 16.35" stroke-width="5.85" fill="none"/>
+  </g>
+  <g fill="#663612" stroke="#663612" stroke-linecap="round">
+    <circle cx="7.7" cy="7.05" r="3.5"/>
+    <path d="M10.15 8.75 L22.15 16.05" stroke-width="4.9" fill="none"/>
+    <circle cx="6.55" cy="6.05" r="1.15" fill="#8A4E28" stroke="none"/>
+  </g>
+  <clipPath id="rim-front">
+    <rect x="0" y="16.15" width="32" height="8"/>
+  </clipPath>
+  <g clip-path="url(#rim-front)">
+    <path fill="#6E871F" fill-rule="evenodd" d="M16 15.95m-11.35 0a11.35 3.65 0 1 0 22.7 0a11.35 3.65 0 1 0-22.7 0M16 16.55m-6.35 0a6.35 1.7 0 1 1 12.7 0a6.35 1.7 0 1 1-12.7 0"/>
+  </g>
+</svg>

@@ -32,7 +32,7 @@ The logo is a transparent cutout of the business-card artwork:
 
 - `public/brand/logo.png` — mortar, pestle, ColAlta script, and PHARMACY lockup (header and footer)
 - `public/brand/mark.png` — mortar and pestle only
-- `app/icon.png` — the mark, used as the site icon
+- `public/icon.svg` — simplified mortar and pestle used for the favicon, apple touch icon, and manifest icons
 
 Brand fonts are self-hosted with `next/font/local` in `app/layout.tsx`. They are not loaded from a CDN.
 
