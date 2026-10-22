@@ -22,7 +22,7 @@ export default function ServicesPage() {
         title="Services at the counter"
         lede="What an independent pharmacy is for: filling prescriptions, moving them here, and answering questions about the medicine. A few items are marked until the pharmacy confirms them."
         current="Services"
-        photo={stills.group}
+        wash={stills.group}
       />
       <Container className="py-12 sm:py-16">
         <div className="max-w-3xl space-y-12">

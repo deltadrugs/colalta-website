@@ -93,24 +93,9 @@ The site is a static export. `.github/workflows/pages.yml` publishes `out/` on e
 
 The canonical URL in `lib/site.ts` (`url`) is `https://colalta.com`. Page titles, Open Graph tags, the sitemap, and structured data use that origin. `www` is only the redirect host.
 
-## Photo studies
+## Photographs
 
-The photographs stay off until you ask for a treatment. GitHub Pages publishes `main` only, so compare them locally or on a separate preview host:
-
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000/preview/](http://localhost:3000/preview/).
-
-| Treatment | URL |
-| --- | --- |
-| Photo wash | `/?variant=wash` — full-width and half-width panels, each picture whole |
-| Window dressing | `/?variant=vignette` — the same pictures in a print mat |
-| Photo accents | `/?variant=accent` — the same pictures as inset cards |
-
-The choice is remembered while you move around the site. `?variant=off` clears it. The waiting-room and counter pictures are atmosphere, not photographs of the shop. The homepage seal is unchanged.
+The waiting-room picture, the porcelain-jar still life, and the pharmacy-counter picture are shown whole, in that order down the homepage, and the waiting room and counter appear again on About. They are atmosphere, not photographs of the Pasadena shop, and they are not captioned as if they were. The other six still lifes are close-cropped bottle textures behind text, light enough that the type stays readable. The homepage seal is unchanged.
 
 A noindex preview export does not change the production build. Leave `PREVIEW_BASE` unset when the preview is served from the domain root. Set it only for a subpath host. Delete `out/CNAME` before uploading that export anywhere other than the colalta.com Pages site.
 

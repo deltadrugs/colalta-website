@@ -1,50 +1,16 @@
 /**
- * Decorative photographs for the photo-study previews.
+ * Photographs for the site.
  *
- * These are atmosphere, not documentation. The waiting-room and counter
- * pictures are not photographs of the Pasadena shop and must not be captioned
- * as if they were. Bottle pictures are ornament. All of them are rendered
- * with an empty alt, whole, at their own proportions.
+ * Waiting-room and counter pictures are atmosphere, not photographs of the
+ * Pasadena shop, and are not captioned as if they were. The porcelain-jar
+ * still life and the amber-bottle textures are ornament. Every image is
+ * rendered with an empty alt.
  *
- * Where each picture is featured, across the homepage and About:
- * labels, waiting, group, counter, table, mortar on the homepage;
- * shelf, amber, and steps on About.
- *
- * Open /preview/ or add ?variant=wash|vignette|accent. ?variant=off clears the
- * choice. Nothing is shown without a variant, so the pages match main until
- * someone is comparing.
+ * Featured, whole, in scroll order on the homepage: waiting, the jar, counter.
+ * The other six are close-cropped, shadow-lifted textures behind text.
  */
 
 import { withBase } from "@/lib/base";
-
-export const treatments = [
-  {
-    id: "wash",
-    label: "Photo wash",
-    short: "Wash",
-    summary: "Full-width and half-width panels. Each picture is whole, and the type sits on its own panel.",
-  },
-  {
-    id: "vignette",
-    label: "Window dressing",
-    short: "Frames",
-    summary: "The same pictures, set in a mat like a print in the window, beside the text.",
-  },
-  {
-    id: "accent",
-    label: "Photo accents",
-    short: "Accents",
-    summary: "The same pictures as inset cards, half a column or wider, with the whole frame visible.",
-  },
-] as const;
-
-export type TreatmentId = (typeof treatments)[number]["id"];
-
-const treatmentIds: readonly string[] = treatments.map((item) => item.id);
-
-export function isTreatment(value: string | null): value is TreatmentId {
-  return value !== null && treatmentIds.includes(value);
-}
 
 export type AtmosphereImage = {
   src: string;
@@ -56,27 +22,26 @@ function picture(name: string, width: number, height: number): AtmosphereImage {
   return { src: withBase(`/atmosphere/${name}.webp`), width, height };
 }
 
+function wash(name: string): AtmosphereImage {
+  return { src: withBase(`/atmosphere/${name}-wash.webp`), width: 1368, height: 810 };
+}
+
 export const stills = {
   waiting: picture("waiting", 1800, 1013),
+  /** White porcelain jar labeled Pterocarpi Lignum, on stacked books. */
+  jar: picture("mortar", 1800, 1350),
   counter: picture("counter", 1800, 1800),
-  table: picture("table", 1800, 1350),
-  mortar: picture("mortar", 1800, 1350),
-  steps: picture("steps", 1800, 1350),
-  group: picture("group", 1800, 1350),
-  shelf: picture("shelf", 1800, 1350),
-  amber: picture("amber", 1800, 1350),
-  labels: picture("labels", 1800, 1350),
+  labels: wash("labels"),
+  group: wash("group"),
+  table: wash("table"),
+  steps: wash("steps"),
+  shelf: wash("shelf"),
+  amber: wash("amber"),
 } as const;
 
-/** Every picture the owner sent, in gallery order. */
-export const allStills: AtmosphereImage[] = [
-  stills.labels,
-  stills.waiting,
-  stills.group,
-  stills.counter,
-  stills.table,
-  stills.mortar,
-  stills.shelf,
-  stills.amber,
-  stills.steps,
-];
+/**
+ * Opacity of a bottle wash over paper or card.
+ * The textures are shadow-lifted first. At 0.34, muted text (#64503E) stays
+ * at or above 4.5:1 on the darkest 5% of every texture, and ink is higher.
+ */
+export const washOpacity = 0.34;

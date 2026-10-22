@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { PreviewBar } from "@/components/atmosphere/PreviewBar";
-import { TreatmentProvider } from "@/components/atmosphere/Treatment";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
@@ -79,22 +77,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${futura.variable} ${santaFe.variable}`}>
       <body>
-        <TreatmentProvider>
-          <a
-            href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-card focus:px-4 focus:py-3 focus:text-ink"
-          >
-            Skip to content
-          </a>
-          <PlaceholderNotice />
-          <Header />
-          <main id="main" tabIndex={-1}>
-            {children}
-          </main>
-          <Footer />
-          <JsonLd />
-          <PreviewBar />
-        </TreatmentProvider>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-card focus:px-4 focus:py-3 focus:text-ink"
+        >
+          Skip to content
+        </a>
+        <PlaceholderNotice />
+        <Header />
+        <main id="main" tabIndex={-1}>
+          {children}
+        </main>
+        <Footer />
+        <JsonLd />
       </body>
     </html>
   );
