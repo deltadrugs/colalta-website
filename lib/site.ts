@@ -70,8 +70,8 @@ export const site: SiteConfig = {
   name: "ColAlta Pharmacy",
   formerName: "Glendale Pharmacy",
   since: "1951",
-  domain: "glendalepharmacy.net",
-  url: "https://glendalepharmacy.net",
+  domain: "colalta.com",
+  url: "https://colalta.com",
   contactDetailsConfirmed: true,
   hoursConfirmed: true,
 
