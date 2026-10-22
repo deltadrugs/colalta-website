@@ -76,3 +76,18 @@ h3 {
   text-transform: uppercase;
   color: var(--color-green);
 }
+
+/* Room for the fixed photo-study bar. The bar is a review tool, not part of the brochure. */
+html[data-study-bar] body {
+  padding-bottom: 5.25rem;
+}
+
+@media print {
+  html[data-study-bar] body {
+    padding-bottom: 0;
+  }
+
+  .study-bar {
+    display: none;
+  }
+}

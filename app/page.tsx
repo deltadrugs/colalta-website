@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BreakFrame, Mark, StillFrame, Wash } from "@/components/atmosphere/Decor";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { AddressBlock, EmailLink, HoursList, PhoneLink } from "@/components/ContactDetails";
 import { IntersectionMap } from "@/components/IntersectionMap";
 import { Spark } from "@/components/Spark";
 import { Stripe } from "@/components/Stripe";
+import { stills } from "@/lib/atmosphere";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
 
@@ -35,8 +37,9 @@ const trust = [
 export default function HomePage() {
   return (
     <>
-      <section>
-        <Container className="grid items-center gap-12 py-14 lg:grid-cols-12 lg:py-20">
+      <section className="relative overflow-hidden">
+        <Wash image={stills.labels} tone="paper" mask="right" opacity={0.24} priority />
+        <Container className="relative grid items-center gap-12 py-14 lg:grid-cols-12 lg:py-20">
           <div className="lg:col-span-7">
             <p className="font-script text-3xl leading-none text-ink sm:text-4xl">since {site.since}</p>
             <h1 className="mt-4 text-ink sm:mt-5">
@@ -70,14 +73,19 @@ export default function HomePage() {
           </div>
           <div className="lg:col-span-5">
             <IntersectionMap />
+            <div className="mt-4 flex justify-end">
+              <StillFrame image={stills.labelsFrame} className="w-[104px] sm:w-[132px]" />
+            </div>
           </div>
         </Container>
       </section>
 
       <Stripe />
+      <BreakFrame image={stills.tableFrame} side="left" />
 
-      <section className="bg-card" aria-labelledby="trust-heading">
-        <Container className="py-14 sm:py-16">
+      <section className="relative overflow-hidden bg-card" aria-labelledby="trust-heading">
+        <Wash image={stills.group} tone="card" mask="corner" opacity={0.12} />
+        <Container className="relative py-14 sm:py-16">
           <h2 id="trust-heading" className="font-sans text-3xl text-ink sm:text-4xl">
             A pharmacy you can walk up to
           </h2>
@@ -98,6 +106,7 @@ export default function HomePage() {
         <Container className="py-14 sm:py-20">
           <div className="max-w-2xl">
             <p className="eyebrow flex items-center gap-2">
+              <Mark image={stills.markLabel} />
               <Spark className="h-3.5 w-3.5 text-orange" />
               Services
             </p>
@@ -140,10 +149,12 @@ export default function HomePage() {
 
       <Stripe />
 
-      <section className="bg-ink text-paper" aria-labelledby="corner-heading">
-        <Container className="grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
+      <section className="relative overflow-hidden bg-ink text-paper" aria-labelledby="corner-heading">
+        <Wash image={stills.counter} tone="ink" mask="even" />
+        <Container className="relative grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
           <div>
             <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-orange">
+              <Mark image={stills.markSteps} tone="ink" />
               <Spark className="h-3.5 w-3.5" />
               Colorado & Altadena
             </p>
@@ -179,10 +190,16 @@ export default function HomePage() {
 
       <Stripe />
 
-      <section aria-labelledby="hours-heading">
-        <Container className="grid gap-12 py-14 lg:grid-cols-2 lg:py-20">
+      <BreakFrame image={stills.stepsFrame} side="right" />
+
+      <section className="relative overflow-hidden" aria-labelledby="hours-heading">
+        <Wash image={stills.waiting} tone="paper" mask="foot" opacity={0.18} />
+        <Container className="relative grid gap-12 py-14 lg:grid-cols-2 lg:py-20">
           <div>
-            <p className="eyebrow">Hours</p>
+            <p className="eyebrow flex items-center gap-2.5">
+              <Mark image={stills.markRose} />
+              Hours
+            </p>
             <h2 id="hours-heading" className="mt-3 font-sans text-3xl text-ink sm:text-4xl">
               Hours
             </h2>
@@ -227,11 +244,13 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="bg-sage" aria-labelledby="transfer-heading">
-        <Container className="flex flex-col gap-6 py-12 sm:py-14 lg:flex-row lg:items-center lg:justify-between">
+      <section className="relative overflow-hidden bg-sage" aria-labelledby="transfer-heading">
+        <Wash image={stills.table} tone="sage" mask="right" opacity={0.12} />
+        <Container className="relative flex flex-col gap-6 py-12 sm:py-14 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-xl">
-            <h2 id="transfer-heading" className="font-sans text-3xl text-ink sm:text-4xl">
-              Moving a prescription here is a phone call.
+            <h2 id="transfer-heading" className="flex items-start gap-3 font-sans text-3xl text-ink sm:text-4xl">
+              <Mark image={stills.markMortar} className="mt-1.5 hidden shrink-0 sm:inline-block" />
+              <span className="min-w-0">Moving a prescription here is a phone call.</span>
             </h2>
             <p className="mt-3 text-lg leading-relaxed text-muted">
               No account to create. Tell us the pharmacy that has the prescription now, and we will

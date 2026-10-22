@@ -93,6 +93,25 @@ The site is a static export. `.github/workflows/pages.yml` publishes `out/` on e
 
 The canonical URL in `lib/site.ts` (`url`) is `https://colalta.com`. Page titles, Open Graph tags, the sitemap, and structured data use that origin. `www` is only the redirect host.
 
+## Photo studies
+
+The still lifes are off until you ask for a treatment. Review them locally (GitHub Pages publishes `main` only):
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000/preview/](http://localhost:3000/preview/).
+
+| Treatment | URL |
+| --- | --- |
+| Faded wash | `/?variant=wash` |
+| Window dressing | `/?variant=vignette` |
+| Small accents | `/?variant=accent` |
+
+The choice is remembered while you move around the site. `?variant=off` clears it. The waiting-room and counter pictures are atmosphere, not photographs of the shop. The homepage seal is unchanged.
+
 ## Before launch
 
 Hours match the posted window sign and `hoursConfirmed` is `true`. If the sign changes, edit `hours.rows` and `hours.summary` in `lib/site.ts`.

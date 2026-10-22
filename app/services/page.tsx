@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { Mark, StillFrame } from "@/components/atmosphere/Decor";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { stills } from "@/lib/atmosphere";
 import { pageMetadata } from "@/lib/seo";
 import { services } from "@/lib/services";
 import { site } from "@/lib/site";
@@ -21,6 +23,9 @@ export default function ServicesPage() {
         title="Services at the counter"
         lede="What an independent pharmacy is for: filling prescriptions, moving them here, and answering questions about the medicine. A few items are marked until the pharmacy confirms them."
         current="Services"
+        wash={stills.shelf}
+        frame={stills.groupFrame}
+        mark={stills.markGroup}
       />
       <Container className="py-12 sm:py-16">
         <div className="max-w-3xl space-y-12">
@@ -37,8 +42,12 @@ export default function ServicesPage() {
             </article>
           ))}
         </div>
-        <aside className="mt-14 max-w-3xl rounded-2xl border border-line bg-card p-6 sm:p-8">
-          <h2 className="font-sans text-2xl text-ink">Ready to move a prescription?</h2>
+        <div className="relative mt-14">
+        <aside className="max-w-3xl rounded-2xl border border-line bg-card p-6 sm:p-8">
+          <h2 className="flex items-center gap-3 font-sans text-2xl text-ink">
+            <Mark image={stills.markSteps} />
+            Ready to move a prescription?
+          </h2>
           <p className="mt-3 leading-relaxed text-muted">
             Call {site.name} or read the transfer steps. There is no online account on this website.
           </p>
@@ -56,6 +65,11 @@ export default function ServicesPage() {
             </Link>
           </p>
         </aside>
+        <StillFrame
+          image={stills.amberFrame}
+          className="pointer-events-none absolute top-6 right-0 hidden w-36 lg:block"
+        />
+        </div>
       </Container>
     </>
   );
