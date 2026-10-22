@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PhotoBand, PhotoCard, SidePhoto, StillFrame, StudyColumns } from "@/components/atmosphere/Decor";
+import { Beside, FullPanel, GallerySection, HeroLayout } from "@/components/atmosphere/Decor";
 import { InkCorner } from "@/components/atmosphere/InkCorner";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
@@ -39,8 +39,8 @@ export default function HomePage() {
   return (
     <>
       <section>
-        <Container className="grid items-start gap-10 py-14 lg:grid-cols-12 lg:gap-12 lg:py-20">
-          <div className="lg:col-span-7">
+        <Container className="py-14 lg:py-16">
+          <HeroLayout image={stills.labels} map={<IntersectionMap />}>
             <p className="font-script text-3xl leading-none text-ink sm:text-4xl">since {site.since}</p>
             <h1 className="mt-4 text-ink sm:mt-5">
               <span className="block font-script text-6xl leading-none sm:text-7xl">ColAlta</span>
@@ -70,16 +70,11 @@ export default function HomePage() {
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted">
               There is no patient portal on this site. Call the pharmacy and we will help.
             </p>
-          </div>
-          <div className="lg:col-span-5">
-            <SidePhoto image={stills.labels} priority className="mb-6" />
-            <StillFrame image={stills.waiting} priority className="mb-6 w-full" />
-            <IntersectionMap />
-          </div>
+          </HeroLayout>
         </Container>
       </section>
 
-      <PhotoBand image={stills.group} />
+      <FullPanel image={stills.waiting} />
       <Stripe />
 
       <section className="bg-card" aria-labelledby="trust-heading">
@@ -102,7 +97,7 @@ export default function HomePage() {
 
       <section aria-labelledby="services-heading">
         <Container className="py-14 sm:py-20">
-          <StudyColumns frame={stills.table} card={stills.labels}>
+          <Beside image={stills.group}>
             <div className="max-w-2xl">
               <p className="eyebrow">
                 <Spark className="mr-2.5 inline-block h-3.5 w-3.5 text-orange align-[-1px]" />
@@ -116,7 +111,7 @@ export default function HomePage() {
                 pharmacy” is not a promise — call and ask.
               </p>
             </div>
-          </StudyColumns>
+          </Beside>
           <ol className="mt-10 border-t border-line">
             {services.map((service, index) => (
               <li key={service.slug} className="border-b border-line py-6">
@@ -151,7 +146,6 @@ export default function HomePage() {
       <section className="bg-ink text-paper" aria-labelledby="corner-heading">
         <InkCorner
           photo={stills.counter}
-          card={stills.steps}
           copy={
             <>
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-orange">
@@ -192,7 +186,8 @@ export default function HomePage() {
       </section>
 
       <Stripe />
-      <PhotoBand image={stills.waiting} />
+
+      <GallerySection images={[stills.table, stills.mortar, stills.shelf, stills.amber, stills.steps]} />
 
       <section aria-labelledby="hours-heading">
         <Container className="grid gap-12 py-14 lg:grid-cols-2 lg:py-20">
@@ -201,13 +196,11 @@ export default function HomePage() {
             <h2 id="hours-heading" className="mt-3 font-sans text-3xl text-ink sm:text-4xl">
               Hours
             </h2>
-            <PhotoCard image={stills.amber} className="mt-6" />
             <div className="mt-6 max-w-md">
               <HoursList />
             </div>
           </div>
           <div>
-            <StillFrame image={stills.counter} className="mb-8 w-full max-w-[28rem]" />
             <p className="eyebrow">Contact</p>
             <h2 className="mt-3 font-sans text-3xl text-ink sm:text-4xl">Call or come by</h2>
             <div className="mt-6 space-y-5">
@@ -254,7 +247,6 @@ export default function HomePage() {
               No account to create. Tell us the pharmacy that has the prescription now, and we will
               request the transfer.
             </p>
-            <PhotoCard image={stills.mortar} className="mt-6" />
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button href={site.phoneHref} className="w-full sm:w-auto">

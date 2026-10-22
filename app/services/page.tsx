@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { FrameColumn, PhotoCard } from "@/components/atmosphere/Decor";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
@@ -23,9 +22,7 @@ export default function ServicesPage() {
         title="Services at the counter"
         lede="What an independent pharmacy is for: filling prescriptions, moving them here, and answering questions about the medicine. A few items are marked until the pharmacy confirms them."
         current="Services"
-        wash={stills.shelf}
-        frame={stills.group}
-        card={stills.amber}
+        photo={stills.group}
       />
       <Container className="py-12 sm:py-16">
         <div className="max-w-3xl space-y-12">
@@ -42,10 +39,9 @@ export default function ServicesPage() {
             </article>
           ))}
         </div>
-        <div className="mt-14 flex flex-col items-start gap-8 lg:flex-row">
-          <aside className="w-full min-w-0 max-w-3xl flex-1 rounded-2xl border border-line bg-card p-6 sm:p-8">
+        <div className="mt-14">
+          <aside className="max-w-3xl rounded-2xl border border-line bg-card p-6 sm:p-8">
             <h2 className="font-sans text-2xl text-ink">Ready to move a prescription?</h2>
-            <PhotoCard image={stills.group} className="mt-6" />
             <p className="mt-3 leading-relaxed text-muted">
               Call {site.name} or read the transfer steps. There is no online account on this website.
             </p>
@@ -63,7 +59,6 @@ export default function ServicesPage() {
               </Link>
             </p>
           </aside>
-          <FrameColumn image={stills.amber} />
         </div>
       </Container>
     </>

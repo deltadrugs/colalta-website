@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PhotoBand, StudyColumns } from "@/components/atmosphere/Decor";
+import { Beside } from "@/components/atmosphere/Decor";
 import { Container } from "@/components/Container";
 import { Stripe } from "@/components/Stripe";
 import type { AtmosphereImage } from "@/lib/atmosphere";
@@ -9,22 +9,18 @@ export function PageHero({
   title,
   lede,
   current,
-  wash,
-  frame,
-  card,
+  photo,
 }: {
   eyebrow: string;
   title: string;
   lede: string;
   current: string;
-  wash?: AtmosphereImage;
-  frame?: AtmosphereImage;
-  card?: AtmosphereImage;
+  photo?: AtmosphereImage;
 }) {
   return (
     <header>
       <Container className="py-12 sm:py-16">
-        <StudyColumns frame={frame} card={card} priority>
+        <Beside image={photo} priority>
           <nav aria-label="Breadcrumb" className="text-sm text-muted">
             <ol className="flex flex-wrap items-center gap-2">
               <li>
@@ -41,9 +37,8 @@ export function PageHero({
           <p className="eyebrow mt-6">{eyebrow}</p>
           <h1 className="mt-3 max-w-3xl font-sans text-4xl leading-[1.12] text-ink sm:text-5xl">{title}</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">{lede}</p>
-        </StudyColumns>
+        </Beside>
       </Container>
-      <PhotoBand image={wash} priority />
       <Stripe />
     </header>
   );

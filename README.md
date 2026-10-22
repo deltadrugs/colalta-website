@@ -106,9 +106,9 @@ Open [http://localhost:3000/preview/](http://localhost:3000/preview/).
 
 | Treatment | URL |
 | --- | --- |
-| Photo wash | `/?variant=wash` — full-bleed bands and a column photograph; type stays on a solid panel |
-| Window dressing | `/?variant=vignette` — framed photographs about 300–450px wide, including the waiting room and counter |
-| Photo accents | `/?variant=accent` — medium photo cards, not thumbnails |
+| Photo wash | `/?variant=wash` — full-width and half-width panels, each picture whole |
+| Window dressing | `/?variant=vignette` — the same pictures in a print mat |
+| Photo accents | `/?variant=accent` — the same pictures as inset cards |
 
 The choice is remembered while you move around the site. `?variant=off` clears it. The waiting-room and counter pictures are atmosphere, not photographs of the shop. The homepage seal is unchanged.
 

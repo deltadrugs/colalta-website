@@ -20,9 +20,10 @@ export default function PreviewPage() {
       </h1>
       <div className="mt-5 max-w-2xl space-y-4 text-lg leading-relaxed text-muted">
         <p>
-          The same pages, three treatments. Wash uses full-bleed bands and a column photograph,
-          with the type on a solid panel. Window dressing uses large framed prints, including the
-          waiting room and the counter. Accents are medium photo cards. The words stay readable.
+          The same pages, three treatments. Every picture is shown whole, at its own shape.
+          Wash lays them in as panels. Window dressing sets them in a mat. Accents uses the same
+          sizes as inset cards. The words stay on their own panel. All nine pictures appear across
+          the homepage and About.
         </p>
         <p>
           The waiting room and the counter are atmosphere only. They are not pictures of the

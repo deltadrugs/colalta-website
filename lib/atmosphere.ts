@@ -4,7 +4,11 @@
  * These are atmosphere, not documentation. The waiting-room and counter
  * pictures are not photographs of the Pasadena shop and must not be captioned
  * as if they were. Bottle pictures are ornament. All of them are rendered
- * with an empty alt.
+ * with an empty alt, whole, at their own proportions.
+ *
+ * Where each picture is featured, across the homepage and About:
+ * labels, waiting, group, counter, table, mortar on the homepage;
+ * shelf, amber, and steps on About.
  *
  * Open /preview/ or add ?variant=wash|vignette|accent. ?variant=off clears the
  * choice. Nothing is shown without a variant, so the pages match main until
@@ -18,21 +22,19 @@ export const treatments = [
     id: "wash",
     label: "Photo wash",
     short: "Wash",
-    summary:
-      "Full-bleed photo bands and a column photograph. The bottles are recognizable, and the type sits on a solid panel.",
+    summary: "Full-width and half-width panels. Each picture is whole, and the type sits on its own panel.",
   },
   {
     id: "vignette",
     label: "Window dressing",
     short: "Frames",
-    summary:
-      "Framed photographs in their own column, wide enough to read as prints. Includes the waiting room and the counter.",
+    summary: "The same pictures, set in a mat like a print in the window, beside the text.",
   },
   {
     id: "accent",
     label: "Photo accents",
     short: "Accents",
-    summary: "Medium photo cards beside a heading or a section. Large enough to enjoy, small enough to leave the page alone.",
+    summary: "The same pictures as inset cards, half a column or wider, with the whole frame visible.",
   },
 ] as const;
 
@@ -48,38 +50,33 @@ export type AtmosphereImage = {
   src: string;
   width: number;
   height: number;
-  /** CSS object-position when the picture is cropped into a frame. */
-  position?: string;
-  /** Responsive sources. Frames and bands both use this. */
-  srcSet?: string;
 };
 
-function picture(
-  name: string,
-  width: number,
-  height: number,
-  frameWidth: number,
-  position?: string,
-): AtmosphereImage {
-  const wideSrc = withBase(`/atmosphere/${name}-wide.webp`);
-  const frameSrc = withBase(`/atmosphere/${name}-frame.webp`);
-  return {
-    src: wideSrc,
-    width,
-    height,
-    position,
-    srcSet: `${frameSrc} ${frameWidth}w, ${wideSrc} ${width}w`,
-  };
+function picture(name: string, width: number, height: number): AtmosphereImage {
+  return { src: withBase(`/atmosphere/${name}.webp`), width, height };
 }
 
 export const stills = {
-  labels: picture("labels", 1800, 1350, 960, "50% 58%"),
-  group: picture("group", 1800, 1350, 960, "50% 46%"),
-  counter: picture("counter", 1800, 1087, 960, "50% 58%"),
-  waiting: picture("waiting", 1800, 1013, 960, "50% 55%"),
-  mortar: picture("mortar", 1800, 1350, 960, "38% 56%"),
-  table: picture("table", 1800, 1350, 960, "50% 55%"),
-  shelf: picture("shelf", 1800, 1350, 960, "50% 70%"),
-  amber: picture("amber", 1800, 1350, 960, "42% 48%"),
-  steps: picture("steps", 1800, 1350, 960, "55% 42%"),
+  waiting: picture("waiting", 1800, 1013),
+  counter: picture("counter", 1800, 1800),
+  table: picture("table", 1800, 1350),
+  mortar: picture("mortar", 1800, 1350),
+  steps: picture("steps", 1800, 1350),
+  group: picture("group", 1800, 1350),
+  shelf: picture("shelf", 1800, 1350),
+  amber: picture("amber", 1800, 1350),
+  labels: picture("labels", 1800, 1350),
 } as const;
+
+/** Every picture the owner sent, in gallery order. */
+export const allStills: AtmosphereImage[] = [
+  stills.labels,
+  stills.waiting,
+  stills.group,
+  stills.counter,
+  stills.table,
+  stills.mortar,
+  stills.shelf,
+  stills.amber,
+  stills.steps,
+];
