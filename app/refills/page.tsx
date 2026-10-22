@@ -1,6 +1,7 @@
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { stills } from "@/lib/atmosphere";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -39,6 +40,7 @@ export default function RefillsPage() {
         title="Refills and transfers"
         lede="Call the pharmacy. We will refill a prescription that is already here, or ask another pharmacy to send one over. This website does not have a patient portal."
         current="Refills"
+        wash={stills.table}
       />
       <Container className="py-12 sm:py-16">
         <div className="grid gap-12 lg:grid-cols-2">

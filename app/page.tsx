@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BottleWash, FeaturePhoto } from "@/components/atmosphere/Photos";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { AddressBlock, EmailLink, HoursList, PhoneLink } from "@/components/ContactDetails";
 import { IntersectionMap } from "@/components/IntersectionMap";
 import { Spark } from "@/components/Spark";
 import { Stripe } from "@/components/Stripe";
+import { stills } from "@/lib/atmosphere";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
 
@@ -35,8 +37,9 @@ const trust = [
 export default function HomePage() {
   return (
     <>
-      <section>
-        <Container className="grid items-center gap-12 py-14 lg:grid-cols-12 lg:py-20">
+      <section className="relative isolate overflow-hidden bg-paper">
+        <BottleWash image={stills.labels} />
+        <Container className="relative z-10 grid items-center gap-10 py-14 lg:grid-cols-12 lg:py-16">
           <div className="lg:col-span-7">
             <p className="font-script text-3xl leading-none text-ink sm:text-4xl">since {site.since}</p>
             <h1 className="mt-4 text-ink sm:mt-5">
@@ -74,10 +77,15 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <Container className="py-10 sm:py-12">
+        <FeaturePhoto image={stills.waiting} priority />
+      </Container>
+
       <Stripe />
 
-      <section className="bg-card" aria-labelledby="trust-heading">
-        <Container className="py-14 sm:py-16">
+      <section className="relative isolate overflow-hidden bg-card" aria-labelledby="trust-heading">
+        <BottleWash image={stills.group} />
+        <Container className="relative z-10 py-14 sm:py-16">
           <h2 id="trust-heading" className="font-sans text-3xl text-ink sm:text-4xl">
             A pharmacy you can walk up to
           </h2>
@@ -94,11 +102,18 @@ export default function HomePage() {
 
       <Stripe />
 
-      <section aria-labelledby="services-heading">
-        <Container className="py-14 sm:py-20">
+      <Container className="py-10 sm:py-12">
+        <FeaturePhoto image={stills.jar} />
+      </Container>
+
+      <Stripe />
+
+      <section className="relative isolate overflow-hidden bg-paper" aria-labelledby="services-heading">
+        <BottleWash image={stills.table} />
+        <Container className="relative z-10 py-14 sm:py-20">
           <div className="max-w-2xl">
-            <p className="eyebrow flex items-center gap-2">
-              <Spark className="h-3.5 w-3.5 text-orange" />
+            <p className="eyebrow">
+              <Spark className="mr-2.5 inline-block h-3.5 w-3.5 text-orange align-[-1px]" />
               Services
             </p>
             <h2 id="services-heading" className="mt-3 font-sans text-3xl text-ink sm:text-4xl">
@@ -141,10 +156,10 @@ export default function HomePage() {
       <Stripe />
 
       <section className="bg-ink text-paper" aria-labelledby="corner-heading">
-        <Container className="grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
+        <Container className="grid gap-10 py-14 lg:grid-cols-2 lg:py-20">
           <div>
-            <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-orange">
-              <Spark className="h-3.5 w-3.5" />
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-orange">
+              <Spark className="mr-2.5 inline-block h-3.5 w-3.5 align-[-1px]" />
               Colorado & Altadena
             </p>
             <h2 id="corner-heading" className="mt-3 font-sans text-3xl font-semibold leading-tight sm:text-4xl">
@@ -165,6 +180,7 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
+          <FeaturePhoto image={stills.counter} className="self-start border-paper/40 lg:row-span-2" />
           <blockquote className="border-l-2 border-orange pl-6">
             <p className="font-script text-4xl leading-tight">
               Colorado Boulevard and Altadena Drive. That is the whole of the name, and where to
@@ -179,8 +195,9 @@ export default function HomePage() {
 
       <Stripe />
 
-      <section aria-labelledby="hours-heading">
-        <Container className="grid gap-12 py-14 lg:grid-cols-2 lg:py-20">
+      <section className="relative isolate overflow-hidden bg-paper" aria-labelledby="hours-heading">
+        <BottleWash image={stills.steps} />
+        <Container className="relative z-10 grid gap-12 py-14 lg:grid-cols-2 lg:py-20">
           <div>
             <p className="eyebrow">Hours</p>
             <h2 id="hours-heading" className="mt-3 font-sans text-3xl text-ink sm:text-4xl">
@@ -227,8 +244,9 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="bg-sage" aria-labelledby="transfer-heading">
-        <Container className="flex flex-col gap-6 py-12 sm:py-14 lg:flex-row lg:items-center lg:justify-between">
+      <section className="relative isolate overflow-hidden bg-card" aria-labelledby="transfer-heading">
+        <BottleWash image={stills.amber} />
+        <Container className="relative z-10 flex flex-col gap-6 py-12 sm:py-14 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-xl">
             <h2 id="transfer-heading" className="font-sans text-3xl text-ink sm:text-4xl">
               Moving a prescription here is a phone call.

@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { AddressBlock, EmailLink, HoursList, PhoneLink } from "@/components/ContactDetails";
 import { IntersectionMap } from "@/components/IntersectionMap";
 import { PageHero } from "@/components/PageHero";
+import { stills } from "@/lib/atmosphere";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -21,6 +22,7 @@ export default function ContactPage() {
         title="Contact and location"
         lede="ColAlta Pharmacy is at 2498 East Colorado Blvd, Pasadena, CA 91107, where Colorado Boulevard meets Altadena Drive. Call, send a fax, email a general question, or open the address in Google Maps."
         current="Contact"
+        wash={stills.shelf}
       />
       <Container className="grid gap-12 py-12 lg:grid-cols-2 lg:py-16">
         <div className="space-y-8">

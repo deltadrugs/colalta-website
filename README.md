@@ -93,6 +93,18 @@ The site is a static export. `.github/workflows/pages.yml` publishes `out/` on e
 
 The canonical URL in `lib/site.ts` (`url`) is `https://colalta.com`. Page titles, Open Graph tags, the sitemap, and structured data use that origin. `www` is only the redirect host.
 
+## Photographs
+
+The waiting-room picture, the porcelain-jar still life, and the pharmacy-counter picture are shown whole, in that order down the homepage, and the waiting room and counter appear again on About. They are atmosphere, not photographs of the Pasadena shop, and they are not captioned as if they were. The other six still lifes are close-cropped bottle textures behind text, light enough that the type stays readable. The homepage seal is unchanged.
+
+A noindex preview export does not change the production build. Leave `PREVIEW_BASE` unset when the preview is served from the domain root. Set it only for a subpath host. Delete `out/CNAME` before uploading that export anywhere other than the colalta.com Pages site.
+
+```bash
+PREVIEW_NOINDEX=1 npm run build
+# subpath host only:
+# PREVIEW_BASE=/colalta-preview PREVIEW_NOINDEX=1 npm run build
+```
+
 ## Before launch
 
 Hours match the posted window sign and `hoursConfirmed` is `true`. If the sign changes, edit `hours.rows` and `hours.summary` in `lib/site.ts`.

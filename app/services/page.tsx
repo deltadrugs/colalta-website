@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { stills } from "@/lib/atmosphere";
 import { pageMetadata } from "@/lib/seo";
 import { services } from "@/lib/services";
 import { site } from "@/lib/site";
@@ -21,6 +22,7 @@ export default function ServicesPage() {
         title="Services at the counter"
         lede="What an independent pharmacy is for: filling prescriptions, moving them here, and answering questions about the medicine. A few items are marked until the pharmacy confirms them."
         current="Services"
+        wash={stills.group}
       />
       <Container className="py-12 sm:py-16">
         <div className="max-w-3xl space-y-12">
@@ -37,25 +39,27 @@ export default function ServicesPage() {
             </article>
           ))}
         </div>
-        <aside className="mt-14 max-w-3xl rounded-2xl border border-line bg-card p-6 sm:p-8">
-          <h2 className="font-sans text-2xl text-ink">Ready to move a prescription?</h2>
-          <p className="mt-3 leading-relaxed text-muted">
-            Call {site.name} or read the transfer steps. There is no online account on this website.
-          </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <Button href={site.phoneHref} className="w-full sm:w-auto">
-              Call {site.phoneDisplay}
-            </Button>
-            <Button href="/refills" variant="secondary" className="w-full sm:w-auto">
-              Refills and transfers
-            </Button>
-          </div>
-          <p className="mt-6 text-sm">
-            <Link href="/contact" className="font-semibold text-green underline underline-offset-4">
-              Hours and location
-            </Link>
-          </p>
-        </aside>
+        <div className="mt-14">
+          <aside className="max-w-3xl rounded-2xl border border-line bg-card p-6 sm:p-8">
+            <h2 className="font-sans text-2xl text-ink">Ready to move a prescription?</h2>
+            <p className="mt-3 leading-relaxed text-muted">
+              Call {site.name} or read the transfer steps. There is no online account on this website.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Button href={site.phoneHref} className="w-full sm:w-auto">
+                Call {site.phoneDisplay}
+              </Button>
+              <Button href="/refills" variant="secondary" className="w-full sm:w-auto">
+                Refills and transfers
+              </Button>
+            </div>
+            <p className="mt-6 text-sm">
+              <Link href="/contact" className="font-semibold text-green underline underline-offset-4">
+                Hours and location
+              </Link>
+            </p>
+          </aside>
+        </div>
       </Container>
     </>
   );
